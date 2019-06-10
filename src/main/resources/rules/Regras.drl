@@ -21,6 +21,9 @@ rule "GoodBye"
 end
 */
 
-rule "Regra a"
+rule "Regra B"
+	when
+		$c: Cliente(
+	then
 
 end

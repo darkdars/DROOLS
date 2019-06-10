@@ -16,11 +16,13 @@ public class Items {
 		
 	}
 	
-	public Items(String nome, Tipo tipo, Items complementar, int stock) {
+	public Items(String id, String nome, String descricao, Tipo tipo, Items complementar, int stock) {
+		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.complementar = complementar;
 		this.stock = stock;
+		this.descricao = descricao;
 	}
 	
 	

@@ -24,10 +24,10 @@ public class DroolsTest {
 
 			// Inserir na lista de items
 
-			Items item1 = new Items("Chapeu", Tipo.homem, null, 1);
-			Items item2 = new Items("Oculos de Sol", Tipo.homem, item1, 1);
-			Items item3 = new Items("Chapeu", Tipo.homem, item2, 1);
-			
+			Items item1 = new Items("001", "Chapeu", "Tommy", Tipo.homem, null, 1);
+			Items item2 = new Items("002", "Oculos de Sol", "Ray Ban", Tipo.homem, item1, 1);
+			Items item3 = new Items("003", "Camisola", "", Tipo.crianca, null, 1);
+		
 			
 			
 			listItems.add(item1);
