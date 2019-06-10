@@ -24,7 +24,7 @@ end
 rule "Check Children M"
 	when
 		
-		
+		$c: Cliente($id == $i1, isMale == true, isChildren == true) 
 	then
 
 end

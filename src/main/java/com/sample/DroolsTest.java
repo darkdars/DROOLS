@@ -53,6 +53,8 @@ public class DroolsTest {
 			kSession.insert(cliente2);
 			kSession.insert(cliente3);
 
+			
+			
 			kSession.fireAllRules();
 			
 			

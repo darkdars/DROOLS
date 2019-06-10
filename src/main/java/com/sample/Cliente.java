@@ -7,12 +7,14 @@ public class Cliente {
 	private boolean isSingle;
 	private boolean children;
 	
+	
 	public Cliente(String id, String name, boolean isMale, boolean isSingle, boolean children) {
 		this.id = id;
 		this.name = name;
 		this.isMale = isMale;
 		this.isSingle = isSingle;
 		this.children = children;
+		
 	}
 	
 	public String getId() {

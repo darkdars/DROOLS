@@ -6,6 +6,10 @@ public class Carrinho {
 	List<Items> compras;
 	float valor;
 	
+	public Carrinho() {
+		
+	}
+	
 	public void updateValor() {
 		this.valor = 0;
 		for (Items i: compras) {
