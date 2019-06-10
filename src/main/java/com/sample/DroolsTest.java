@@ -1,5 +1,6 @@
 package com.sample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.kie.api.KieServices;
@@ -11,71 +12,75 @@ import org.kie.api.runtime.KieSession;
  */
 public class DroolsTest {
 
-    public static final void main(String[] args) {
-        try {
-            // load up the knowledge base
-	        KieServices ks = KieServices.Factory.get();
-    	    KieContainer kContainer = ks.getKieClasspathContainer();
-        	KieSession kSession = kContainer.newKieSession("ksession-rules");
+	public static final void main(String[] args) {
+		try {
+			// load up the knowledge base
+			KieServices ks = KieServices.Factory.get();
+			KieContainer kContainer = ks.getKieClasspathContainer();
+			KieSession kSession = kContainer.newKieSession("ksession-rules");
 
-            // go !
-        	List<Items> listItems = null;
-        	
-        	//Criar Items
-        	
-        	Items item1 = new Items(null, null, null);
-        	
-        	//Inserir na lista de items
-        	
-        	listItems.add(item1);
-        	
-        	//Armazém criado
-        	Armazem armazem = new Armazem(listItems);
-        	
-        	
-        	//Clientes
-        	Cliente cliente1 = new Cliente(null, null, false, false, false);
-        	
-        	
-        	
-        	
-        	
-          /*  Message message = new Message();
-            message.setMessage("Hello World");
-            message.setStatus(Message.HELLO);
-            kSession.insert(message);
-            kSession.fireAllRules();
-            */
-        } catch (Throwable t) {
-            t.printStackTrace();
-        }
-    }
+			// go !
+			List<Items> listItems = new ArrayList<Items>();
 
-    public static class Message {
+			// Inserir na lista de items
 
-        public static final int HELLO = 0;
-        public static final int GOODBYE = 1;
+			Items item1 = new Items("Chapeu", Tipo.homem, null, 1);
+			Items item2 = new Items("Oculos de Sol", Tipo.homem, item1, 1);
+			Items item3 = new Items("Chapeu", Tipo.homem, item2, 1);
+			
+			listItems.add(item1);
+			listItems.add(item2);
+			listItems.add(item3);
 
-        private String message;
+			// Armazém criado
+			Armazem armazem = new Armazem(listItems);
 
-        private int status;
+			// Clientes
+			Cliente cliente1 = new Cliente(null, "Hugo", true, true, false);
+			Cliente cliente2 = new Cliente(null, "Carlos", false, true, false);
+			Cliente cliente3 = new Cliente(null, "Diogo", true, false, true); // mas que saiba não!
 
-        public String getMessage() {
-            return this.message;
-        }
+			kSession.insert(armazem);
+			kSession.insert(cliente1);
+			kSession.insert(cliente2);
+			kSession.insert(cliente3);
 
-        public void setMessage(String message) {
-            this.message = message;
-        }
+			kSession.fireAllRules();
+			
+			/* Message message = new Message(); message.setMessage("Hello World");
+			  message.setStatus(Message.HELLO); kSession.insert(message);
+			  kSession.fireAllRules();
+			 */
+		} catch (Throwable t) {
+			t.printStackTrace();
+		}
+	}
 
-        public int getStatus() {
-            return this.status;
-        }
+	public static class Message {
 
-        public void setStatus(int status) {
-            this.status = status;
-        }
+		public static final int HELLO = 0;
+		public static final int GOODBYE = 1;
 
-    }
+		private String message;
+
+		private int status;
+
+		public String getMessage() {
+			return this.message;
+		}
+
+		public void setMessage(String message) {
+			this.message = message;
+		}
+
+		public int getStatus() {
+			return this.status;
+		}
+
+		public void setStatus(int status) {
+			this.status = status;
+		}
+
+	}
 
 }

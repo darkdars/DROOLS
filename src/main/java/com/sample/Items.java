@@ -5,15 +5,23 @@ enum Tipo{
 }
 
 public class Items {
+	String id;
 	String nome;
 	Tipo tipo;
 	Items complementar;
+	int stock;
 	
-	public Items(String nome, Tipo tipo, Items complementar) {
+	public Items() {
+		
+	}
+	
+	public Items(String nome, Tipo tipo, Items complementar, int stock) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.complementar = complementar;
+		this.stock = stock;
 	}
+	
 	
 	public String getNome() {
 		return nome;
@@ -33,5 +41,15 @@ public class Items {
 	public void setComplementar(Items complementar) {
 		this.complementar = complementar;
 	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+	
+	
 	
 }

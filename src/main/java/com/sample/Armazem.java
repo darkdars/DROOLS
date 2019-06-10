@@ -2,11 +2,12 @@ package com.sample;
 
 import java.util.*;
 
-public class Armazem extends Items {
+public class Armazem extends Items{
 	List<Items> listItems;
 	
 	public Armazem(List<Items> listItems) {
 		// TODO Auto-generated constructor stub
+		super();
 		this.listItems = listItems;
 	}
 
