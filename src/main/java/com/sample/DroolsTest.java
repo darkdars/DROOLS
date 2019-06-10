@@ -19,6 +19,7 @@ public class DroolsTest {
 			KieContainer kContainer = ks.getKieClasspathContainer();
 			KieSession kSession = kContainer.newKieSession("ksession-rules");
 
+			
 			// go !
 			List<Items> listItems = new ArrayList<Items>();
 
@@ -26,8 +27,9 @@ public class DroolsTest {
 
 			Items item1 = new Items("001", "Chapeu", "Tommy", Tipo.homem, null, 1);
 			Items item2 = new Items("002", "Oculos de Sol", "Ray Ban", Tipo.homem, item1, 1);
-			Items item3 = new Items("003", "Camisola", "", Tipo.crianca, null, 1);
-		
+			Items item3 = new Items("003", "Camisola", "Sou o Papa!", Tipo.crianca, null, 1);
+			
+			
 			
 			
 			listItems.add(item1);
@@ -36,6 +38,7 @@ public class DroolsTest {
 
 			// Armazém criado
 			Armazem armazem = new Armazem(listItems);
+			Loja loja = new Loja(armazem);
 
 			// Clientes
 			Cliente cliente1 = new Cliente(null, "Hugo", true, true, false);
@@ -44,17 +47,21 @@ public class DroolsTest {
 
 			
 			
-			kSession.insert(armazem);
+			
+			kSession.insert(loja);
 			kSession.insert(cliente1);
 			kSession.insert(cliente2);
 			kSession.insert(cliente3);
 
 			kSession.fireAllRules();
 			
-			/* Message message = new Message(); message.setMessage("Hello World");
+			
+			/*
+			 Message message = new Message(); message.setMessage("Hello World");
 			  message.setStatus(Message.HELLO); kSession.insert(message);
 			  kSession.fireAllRules();
-			 */
+			  */
+			 
 		} catch (Throwable t) {
 			t.printStackTrace();
 		}

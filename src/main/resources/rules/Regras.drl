@@ -21,9 +21,17 @@ rule "GoodBye"
 end
 */
 
-rule "Regra B"
+rule "Check Children M"
 	when
-		$c: Cliente(
+		
+		
+	then
+
+end
+
+rule "Check Children F"
+	when
+		
 	then
 
 end

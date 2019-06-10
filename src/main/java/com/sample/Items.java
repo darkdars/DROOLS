@@ -11,6 +11,7 @@ public class Items {
 	Tipo tipo;
 	Items complementar;
 	int stock;
+	float valor;
 	
 	public Items() {
 		
@@ -68,6 +69,15 @@ public class Items {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
+
+	public float getValor() {
+		return valor;
+	}
+
+	public void setValor(float valor) {
+		this.valor = valor;
+	}
+	
 	
 	
 	
