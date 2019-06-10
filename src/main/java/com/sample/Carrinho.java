@@ -20,7 +20,6 @@ public class Carrinho {
 		this.compras = compras;
 	}
 	public float getValor() {
-		this.updateValor();
 		return valor;
 	}
 	public void setValor(float valor) {
@@ -28,11 +27,13 @@ public class Carrinho {
 	}
 	
 	public void addCompra(Items item) {
+		this.valor += item.getValor();
 		this.compras.add(item);
 	}
 	
 	public void removeCompra(Items item) {
-		
+		this.valor -= item.getValor();
+		this.compras.remove(item);
 	}
 	
 	

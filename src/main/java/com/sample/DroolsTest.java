@@ -25,9 +25,9 @@ public class DroolsTest {
 
 			// Inserir na lista de items
 
-			Items item1 = new Items("001", "Chapeu", "Tommy", Tipo.homem, null, 1);
-			Items item2 = new Items("002", "Oculos de Sol", "Ray Ban", Tipo.homem, item1, 1);
-			Items item3 = new Items("003", "Camisola", "Sou o Papa!", Tipo.crianca, null, 1);
+			Items item1 = new Items("001", "Chapeu",10, "Tommy", Tipo.homem, null);
+			Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", Tipo.homem, item1);
+			Items item3 = new Items("003", "Camisola",0, "Sou o Papa!", Tipo.crianca, null);
 			
 			
 			
@@ -41,9 +41,9 @@ public class DroolsTest {
 			Loja loja = new Loja(armazem);
 
 			// Clientes
-			Cliente cliente1 = new Cliente(null, "Hugo", true, true, false);
-			Cliente cliente2 = new Cliente(null, "Carlos", false, true, false);
-			Cliente cliente3 = new Cliente(null, "Diogo", true, false, true); // mas que saiba não!
+			Cliente cliente1 = new Cliente("001", "Hugo", true, true, false);
+			Cliente cliente2 = new Cliente("002", "Carlos", false, true, false);
+			Cliente cliente3 = new Cliente("003", "Diogo", true, false, true); // mas que saiba não!
 
 			
 			

@@ -1,10 +1,14 @@
 package com.sample;
 
+import java.util.*;
+
 public class Loja{
 	Armazem armazem;
-	HashMap<String,Carrinho>;
+	HashMap<String,Carrinho> lista;
 	
+
 	public Loja(Armazem armazem) {
+		this.lista = new HashMap<>();
 		this.armazem = armazem;
 	}
 

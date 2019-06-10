@@ -10,20 +10,19 @@ public class Items {
 	String descricao;
 	Tipo tipo;
 	Items complementar;
-	int stock;
 	float valor;
 	
 	public Items() {
 		
 	}
 	
-	public Items(String id, String nome, String descricao, Tipo tipo, Items complementar, int stock) {
+	public Items(String id, String nome,float valor, String descricao, Tipo tipo, Items complementar) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.complementar = complementar;
-		this.stock = stock;
 		this.descricao = descricao;
+		this.valor = valor;
 	}
 	
 	
@@ -44,14 +43,6 @@ public class Items {
 	}
 	public void setComplementar(Items complementar) {
 		this.complementar = complementar;
-	}
-
-	public int getStock() {
-		return stock;
-	}
-
-	public void setStock(int stock) {
-		this.stock = stock;
 	}
 
 	public String getId() {
