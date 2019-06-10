@@ -28,6 +28,8 @@ public class DroolsTest {
 			Items item2 = new Items("Oculos de Sol", Tipo.homem, item1, 1);
 			Items item3 = new Items("Chapeu", Tipo.homem, item2, 1);
 			
+			
+			
 			listItems.add(item1);
 			listItems.add(item2);
 			listItems.add(item3);
@@ -40,6 +42,8 @@ public class DroolsTest {
 			Cliente cliente2 = new Cliente(null, "Carlos", false, true, false);
 			Cliente cliente3 = new Cliente(null, "Diogo", true, false, true); // mas que saiba não!
 
+			
+			
 			kSession.insert(armazem);
 			kSession.insert(cliente1);
 			kSession.insert(cliente2);

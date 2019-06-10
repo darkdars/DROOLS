@@ -7,6 +7,7 @@ enum Tipo{
 public class Items {
 	String id;
 	String nome;
+	String descricao;
 	Tipo tipo;
 	Items complementar;
 	int stock;
@@ -48,6 +49,22 @@ public class Items {
 
 	public void setStock(int stock) {
 		this.stock = stock;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 	
