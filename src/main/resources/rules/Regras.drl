@@ -24,14 +24,16 @@ end
 rule "Check Children M"
 	when
 		
-		$c: Cliente($id == $i1, isMale == true, isChildren == true) 
+		$c: Cliente(children == true, male == true) 
 	then
-
+		System.out.println( "Oferece Tshirt: Pai és o melhor!" );
 end
 
 rule "Check Children F"
 	when
+		$c: Cliente(children == true, male == false)
 		
 	then
+	System.out.println( "Oferece Tshirt: Mãe és a segunda!" );
 
 end

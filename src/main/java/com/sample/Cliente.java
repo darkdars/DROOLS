@@ -3,16 +3,16 @@ package com.sample;
 public class Cliente {
 	private String id;
 	private String name;
-	private boolean isMale;
-	private boolean isSingle;
+	private boolean male;
+	private boolean single;
 	private boolean children;
 	
 	
-	public Cliente(String id, String name, boolean isMale, boolean isSingle, boolean children) {
+	public Cliente(String id, String name, boolean male, boolean single, boolean children) {
 		this.id = id;
 		this.name = name;
-		this.isMale = isMale;
-		this.isSingle = isSingle;
+		this.male = male;
+		this.single = single;
 		this.children = children;
 		
 	}
@@ -29,17 +29,17 @@ public class Cliente {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public boolean isMale() {
-		return isMale;
+	public boolean male() {
+		return male;
 	}
-	public void setMale(boolean isMale) {
-		this.isMale = isMale;
+	public void setMale(boolean male) {
+		this.male = male;
 	}
-	public boolean isSingle() {
-		return isSingle;
+	public boolean single() {
+		return this.single;
 	}
-	public void setSingle(boolean isSingle) {
-		this.isSingle = isSingle;
+	public void setSingle(boolean single) {
+		this.single = single;
 	}
 	public boolean isChildren() {
 		return children;

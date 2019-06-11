@@ -11,8 +11,8 @@ public class Loja{
 		this.lista = new HashMap<>();
 		this.armazem = armazem;
 		Carrinho carrinho = new Carrinho();
-		carrinho.addCompra(new Items("001", "Chapeu",10, "Tommy", Tipo.homem, null));
-		this.lista.put("001", carrinho);
+		//carrinho.addCompra(new Items("001", "Chapeu",10, "Tommy", Tipo.homem, null));
+		//this.lista.put("001", carrinho);
 	}
 
 	public Armazem getArmazem() {

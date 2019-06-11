@@ -42,7 +42,7 @@ public class DroolsTest {
 
 			// Clientes
 			Cliente cliente1 = new Cliente("001", "Hugo", true, true, false);
-			Cliente cliente2 = new Cliente("002", "Carlos", false, true, false);
+			Cliente cliente2 = new Cliente("002", "Carlos", false, true, true);
 			Cliente cliente3 = new Cliente("003", "Diogo", true, false, true); // mas que saiba não!
 
 			
