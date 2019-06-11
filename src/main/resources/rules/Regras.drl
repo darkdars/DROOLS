@@ -23,9 +23,11 @@ end
 
 rule "Check Children M"
 	when
-		
-		$c: Cliente(children == true, male == true) 
+		$c: Cliente(children == true, male == true)
+		$f: Armazem($lista : listItems)
+		$i: Items(tipo == "crianca") from $lista 
 	then
+		
 		System.out.println( "Oferece Tshirt: Pai és o melhor!" );
 end
 

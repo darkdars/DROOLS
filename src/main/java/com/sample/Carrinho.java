@@ -1,5 +1,6 @@
 package com.sample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Carrinho {
@@ -7,6 +8,7 @@ public class Carrinho {
 	float valor;
 	
 	public Carrinho() {
+		this.compras = new ArrayList<>();
 		
 	}
 	

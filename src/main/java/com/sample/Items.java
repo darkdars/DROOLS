@@ -1,14 +1,12 @@
 package com.sample;
 
-enum Tipo{
-	mulher, homem, crianca
-}
+
 
 public class Items {
 	String id;
 	String nome;
 	String descricao;
-	Tipo tipo;
+	String tipo;
 	Items complementar;
 	float valor;
 	
@@ -16,7 +14,7 @@ public class Items {
 		
 	}
 	
-	public Items(String id, String nome,float valor, String descricao, Tipo tipo, Items complementar) {
+	public Items(String id, String nome,float valor, String descricao, String tipo, Items complementar) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -32,10 +30,10 @@ public class Items {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Tipo getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(Tipo tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public Items getComplementar() {

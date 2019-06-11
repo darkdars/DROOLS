@@ -7,6 +7,7 @@ import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
+
 /**
  * This is a sample class to launch a rule.
  */
@@ -25,9 +26,9 @@ public class DroolsTest {
 
 			// Inserir na lista de items
 
-			Items item1 = new Items("001", "Chapeu",10, "Tommy", Tipo.homem, null);
-			Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", Tipo.homem, item1);
-			Items item3 = new Items("003", "Camisola",0, "Sou o Papa!", Tipo.crianca, null);
+			Items item1 = new Items("001", "Chapeu",10, "Tommy", "homem", null);
+			Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", "homem", item1);
+			Items item3 = new Items("003", "Camisola",0, "Sou o Papa!", "crianca", null);
 			
 			
 			
@@ -42,13 +43,14 @@ public class DroolsTest {
 
 			// Clientes
 			Cliente cliente1 = new Cliente("001", "Hugo", true, true, false);
-			Cliente cliente2 = new Cliente("002", "Carlos", false, true, true);
+			Cliente cliente2 = new Cliente("002", "Carlos", false, true, false);
 			Cliente cliente3 = new Cliente("003", "Diogo", true, false, true); // mas que saiba não!
-
+			cliente1.setLastitem("001");
+			cliente3.setLastitem("002");
 			
 			
 			
-			kSession.insert(loja);
+			kSession.insert(loja.getArmazem());
 			kSession.insert(cliente1);
 			kSession.insert(cliente2);
 			kSession.insert(cliente3);
