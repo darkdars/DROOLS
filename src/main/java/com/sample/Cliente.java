@@ -16,6 +16,7 @@ public class Cliente {
 		this.male = male;
 		this.single = single;
 		this.children = children;
+		this.lastitem = " ";
 		
 	}
 	
@@ -58,4 +59,12 @@ public class Cliente {
 		this.lastitem = lastitem;
 	}
 	
+	public boolean checkLastitem() {
+		return !this.lastitem.equalsIgnoreCase(" ");
+	}
+	
+	public void deleteLastitem() {
+		this.lastitem = " ";
+	}
+
 }

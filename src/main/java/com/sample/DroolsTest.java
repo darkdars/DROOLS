@@ -39,18 +39,18 @@ public class DroolsTest {
 
 			// Armazém criado
 			Armazem armazem = new Armazem(listItems);
-			Loja loja = new Loja(armazem);
+			//Loja loja = new Loja(armazem);
 
 			// Clientes
-			Cliente cliente1 = new Cliente("001", "Hugo", true, true, false);
-			Cliente cliente2 = new Cliente("002", "Carlos", false, true, false);
-			Cliente cliente3 = new Cliente("003", "Diogo", true, false, true); // mas que saiba não!
+			Cliente cliente1 = new Cliente("001", "Hugo", false, true, false);
+			Cliente cliente2 = new Cliente("002", "Carlos", true, true, false);
+			Cliente cliente3 = new Cliente("003", "Diogo", false, false, true); // mas que saiba não!
 			cliente1.setLastitem("001");
 			cliente3.setLastitem("002");
 			
 			
 			
-			kSession.insert(loja.getArmazem());
+			kSession.insert(armazem);
 			kSession.insert(cliente1);
 			kSession.insert(cliente2);
 			kSession.insert(cliente3);

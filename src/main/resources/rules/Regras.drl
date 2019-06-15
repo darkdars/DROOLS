@@ -20,22 +20,84 @@ rule "GoodBye"
         System.out.println( myMessage );
 end
 */
-
-rule "Check Children M"
+/***********Children*****************/
+rule "Check Children"
 	when
-		$c: Cliente(children == true, male == true)
 		$f: Armazem($lista : listItems)
-		$i: Items(tipo == "crianca") from $lista 
+		$i: Items(tipo == "crianca") from $lista
+		$c: Cliente(children == true)
+		eval($c.checkLastitem())
 	then
-		
+end
+
+rule "Check Children M" extends "Check Children"
+	when
+		eval($c.male())
+	then
+		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: Pai és o melhor!" );
 end
 
-rule "Check Children F"
+rule "Check Children F" extends "Check Children"
 	when
-		$c: Cliente(children == true, male == false)
-		
+		eval(!$c.male())
 	then
-	System.out.println( "Oferece Tshirt: Mãe és a segunda!" );
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: Mãe és a segunda!" );
+
+end
+
+/***********Married*****************/
+rule "Check Married"
+	when
+		$f: Armazem($lista : listItems)
+		$c: Cliente(single == false)
+		eval($c.checkLastitem())
+	then
+end
+
+rule "Check Married M" extends "Check Married"
+	when
+		eval($c.male())
+		$i: Items(tipo == "mulher") from $lista
+	then
+		$c.deleteLastitem();
+		System.out.println( "%s Oferece Tshirt: !");
+end
+
+rule "Check Married F" extends "Check Married"
+	when
+		eval(!$c.male())
+		$i: Items(tipo == "homem") from $lista
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: !" );
+
+end
+
+/***********Single*****************/
+rule "Check Single"
+	when
+		$f: Armazem($lista : listItems)
+		$i: Items(tipo == "homem") from $lista
+		$c: Cliente(single == true)
+		eval($c.checkLastitem())
+	then
+end
+
+rule "Check Single M" extends "Check Single"
+	when
+		eval($c.male())
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: M" );
+end
+
+rule "Check Single F" extends "Check Single"
+	when
+		eval(!$c.male())
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: F" );
 
 end
