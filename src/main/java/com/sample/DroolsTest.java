@@ -39,7 +39,7 @@ public class DroolsTest {
 
 			// Armazém criado
 			Armazem armazem = new Armazem(listItems);
-			//Loja loja = new Loja(armazem);
+			Loja loja = new Loja(armazem);
 
 			// Clientes
 			Cliente cliente1 = new Cliente("001", "Hugo", false, true, false);
@@ -57,6 +57,12 @@ public class DroolsTest {
 
 			
 			
+			kSession.fireAllRules();
+			cliente3.setLastitem("003");
+			kSession.insert(armazem);
+			kSession.insert(cliente1);
+			kSession.insert(cliente2);
+			kSession.insert(cliente3);
 			kSession.fireAllRules();
 			
 			
