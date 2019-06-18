@@ -80,7 +80,7 @@ rule "Check Single"
 	when
 		$f: Armazem($lista : listItems)
 		$i: Items(tipo == "homem") from $lista
-		$c: Cliente(single == true)
+		$c: Cliente(single == true, str : lastitem)
 		eval($c.checkLastitem())
 	then
 end
@@ -97,7 +97,8 @@ rule "Check Single F" extends "Check Single"
 	when
 		eval(!$c.male())
 	then
+		System.out.println( $c.getLastitem());
 		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: F" );
-
+		update($c);
 end
