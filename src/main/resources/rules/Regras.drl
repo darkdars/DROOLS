@@ -22,6 +22,7 @@ end
 */
 /***********Children*****************/
 rule "Check Children"
+	salience 100 
 	when
 		$f: Armazem($lista : listItems)
 		$i: Items(tipo == "crianca") from $lista
@@ -36,6 +37,7 @@ rule "Check Children M" extends "Check Children"
 	then
 		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: Pai és o melhor!" );
+		retract($c);
 end
 
 rule "Check Children F" extends "Check Children"
@@ -44,11 +46,13 @@ rule "Check Children F" extends "Check Children"
 	then
 		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: Mãe és a segunda!" );
+		retract($c);
 
 end
 
 /***********Married*****************/
 rule "Check Married"
+	salience 90
 	when
 		$f: Armazem($lista : listItems)
 		$c: Cliente(single == false)
@@ -63,6 +67,7 @@ rule "Check Married M" extends "Check Married"
 	then
 		$c.deleteLastitem();
 		System.out.println( "%s Oferece Tshirt: !");
+		retract($c);
 end
 
 rule "Check Married F" extends "Check Married"
@@ -72,11 +77,13 @@ rule "Check Married F" extends "Check Married"
 	then
 		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: !" );
+		retract($c);
 
 end
 
 /***********Single*****************/
 rule "Check Single"
+	salience 80
 	when
 		$f: Armazem($lista : listItems)
 		$i: Items(tipo == "homem") from $lista
@@ -91,14 +98,14 @@ rule "Check Single M" extends "Check Single"
 	then
 		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: M" );
+		retract($c);
 end
 
 rule "Check Single F" extends "Check Single"
 	when
 		eval(!$c.male())
 	then
-		System.out.println( $c.getLastitem());
 		$c.deleteLastitem();
 		System.out.println( "Oferece Tshirt: F" );
-		update($c);
+		retract($c);
 end

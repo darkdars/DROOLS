@@ -8,6 +8,7 @@ import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 
 
+
 /**
  * This is a sample class to launch a rule.
  */
@@ -57,12 +58,6 @@ public class DroolsTest {
 
 			
 			
-			kSession.fireAllRules();
-			cliente3.setLastitem("003");
-			kSession.insert(armazem);
-			kSession.insert(cliente1);
-			kSession.insert(cliente2);
-			kSession.insert(cliente3);
 			kSession.fireAllRules();
 			
 			
