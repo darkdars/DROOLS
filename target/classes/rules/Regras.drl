@@ -1,0 +1,111 @@
+package com.sample
+ 
+import com.sample.DroolsTest.Message;
+ 
+ /*
+rule "Hello World"
+    when
+        m : Message( status == Message.HELLO, myMessage : message )
+    then
+        System.out.println( myMessage );
+        m.setMessage( "Goodbye cruel world" );
+        m.setStatus( Message.GOODBYE );
+        update( m );
+end
+
+rule "GoodBye"
+    when
+        Message( status == Message.GOODBYE, myMessage : message )
+    then
+        System.out.println( myMessage );
+end
+*/
+/***********Children*****************/
+rule "Check Children"
+	salience 100 
+	when
+		$f: Armazem($lista : listItems)
+		$i: Items(tipo == "crianca") from $lista
+		$c: Cliente(children == true)
+		eval($c.checkLastitem())
+	then
+end
+
+rule "Check Children M" extends "Check Children"
+	when
+		eval($c.male())
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: Pai és o melhor!" );
+		retract($c);
+end
+
+rule "Check Children F" extends "Check Children"
+	when
+		eval(!$c.male())
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: Mãe és a segunda!" );
+		retract($c);
+
+end
+
+/***********Married*****************/
+rule "Check Married"
+	salience 90
+	when
+		$f: Armazem($lista : listItems)
+		$c: Cliente(single == false)
+		eval($c.checkLastitem())
+	then
+end
+
+rule "Check Married M" extends "Check Married"
+	when
+		eval($c.male())
+		$i: Items(tipo == "mulher") from $lista
+	then
+		$c.deleteLastitem();
+		System.out.println( "%s Oferece Tshirt: !");
+		retract($c);
+end
+
+rule "Check Married F" extends "Check Married"
+	when
+		eval(!$c.male())
+		$i: Items(tipo == "homem") from $lista
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: !" );
+		retract($c);
+
+end
+
+/***********Single*****************/
+rule "Check Single"
+	salience 80
+	when
+		$f: Armazem($lista : listItems)
+		$i: Items(tipo == "homem") from $lista
+		$c: Cliente(single == true, str : lastitem)
+		eval($c.checkLastitem())
+	then
+end
+
+rule "Check Single M" extends "Check Single"
+	when
+		eval($c.male())
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: M" );
+		retract($c);
+end
+
+rule "Check Single F" extends "Check Single"
+	when
+		eval(!$c.male())
+	then
+		$c.deleteLastitem();
+		System.out.println( "Oferece Tshirt: F" );
+		retract($c);
+end
