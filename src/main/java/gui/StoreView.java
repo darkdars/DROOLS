@@ -9,10 +9,13 @@ import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class StoreView extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
 	/**
 	 * Launch the application.
@@ -53,8 +56,27 @@ public class StoreView extends JFrame {
 		JButton btnCart = new JButton("Cart");
 		panel.add(btnCart);
 		
+		table = new JTable();
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null},
+				{null, null, null, null},
+			},
+			new String[] {
+				"Imagem", "Nome", "Quantidade", "Valor"
+			}
+		));
+		table.setBounds(5, 11, 394, 215);
+		contentPane.add(table);
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(5, 11, 419, 182);
+		scrollPane.setBounds(403, 11, 26, 215);
 		contentPane.add(scrollPane);
+		
+		scrollPane.setViewportView(table);
+		
+		
+		
+		
 	}
 }

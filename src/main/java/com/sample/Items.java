@@ -7,6 +7,7 @@ public class Items {
 	String nome;
 	String descricao;
 	String tipo;
+	String img;
 	Items complementar;
 	float valor;
 	
@@ -23,6 +24,15 @@ public class Items {
 		this.valor = valor;
 	}
 	
+	public Items(String id, String nome,float valor, String descricao, String tipo, Items complementar, String img) {
+		this.id = id;
+		this.nome = nome;
+		this.tipo = tipo;
+		this.complementar = complementar;
+		this.descricao = descricao;
+		this.valor = valor;
+		this.img = img;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -65,6 +75,14 @@ public class Items {
 
 	public void setValor(float valor) {
 		this.valor = valor;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 	
