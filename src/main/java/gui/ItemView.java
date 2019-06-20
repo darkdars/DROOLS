@@ -6,37 +6,31 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JButton;
 
-public class ItemView extends JFrame {
+public class ItemView extends JPanel {
 
-	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ItemView frame = new ItemView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
 	public ItemView() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
+		this.setBackground(Color.WHITE);
+		this.setBorder(new EmptyBorder(5, 5, 5, 5));
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		JPanel panel = new JPanel();
+		this.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblGender = new JLabel("Gender :");
+		this.add(lblGender);
+		lblGender.setAlignmentX(Component.CENTER_ALIGNMENT);
 	}
-
 }
