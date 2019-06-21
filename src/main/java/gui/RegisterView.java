@@ -90,6 +90,23 @@ public class RegisterView extends JFrame {
 		rdbtnFemale.setBackground(Color.WHITE);
 		panel_3.add(rdbtnFemale);
 		
+		rdbtnMale.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnFemale.setSelected(false);
+			}
+
+        });
+		rdbtnFemale.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnMale.setSelected(false);
+			}
+
+        });
+		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panel_4.setBackground(Color.WHITE);
@@ -106,6 +123,23 @@ public class RegisterView extends JFrame {
 		JRadioButton rdbtnNo = new JRadioButton("No");
 		rdbtnNo.setBackground(Color.WHITE);
 		panel_4.add(rdbtnNo);
+		
+		radioButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnNo.setSelected(false);
+			}
+
+        });
+		rdbtnNo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioButton.setSelected(false);
+			}
+
+        });
 		
 		JPanel panel_5 = new JPanel();
 		panel_5.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -124,6 +158,23 @@ public class RegisterView extends JFrame {
 		rdbtnNo_1.setBackground(Color.WHITE);
 		panel_5.add(rdbtnNo_1);
 		
+		radioButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				rdbtnNo_1.setSelected(false);
+			}
+
+        });
+		rdbtnNo_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				radioButton_1.setSelected(false);
+			}
+
+        });
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new EmptyBorder(5, 5, 5, 5));
 		panel_1.setBackground(Color.WHITE);
@@ -141,7 +192,7 @@ public class RegisterView extends JFrame {
 				boolean gender = false;
 				boolean married = false;
 				boolean children = false;
-				if(name == null || name.contentEquals(" ")) {
+				if(name == null || name.contentEquals("") || name.contentEquals(" ")) {
 					register = false;
 				}
 				if(rdbtnMale.isSelected()) {

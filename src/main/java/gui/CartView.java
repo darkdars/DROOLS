@@ -70,7 +70,7 @@ public class CartView extends JFrame {
 		panel.add(lblTotal);
 		
 		table = new JTable();
-		table.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Card Shop", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		table.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Card Shop", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 				{null, null, null, null},

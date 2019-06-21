@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -26,7 +29,7 @@ public class StoreView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StoreView frame = new StoreView();
+					StoreView frame = new StoreView(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -38,18 +41,17 @@ public class StoreView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StoreView() {
+	public StoreView(Cliente cliente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(5, 214, 424, 43);
 		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.add(panel);
+		contentPane.add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JButton btnAdd = new JButton("Add");
@@ -57,6 +59,16 @@ public class StoreView extends JFrame {
 		
 		JButton btnCart = new JButton("Cart");
 		panel.add(btnCart);
+		btnCart.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CartView cartView = new CartView();
+				cartView.setVisible(true);
+			}
+
+        });
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
@@ -69,20 +81,16 @@ public class StoreView extends JFrame {
 			}
 		));
 		table.setBounds(5, 11, 394, 215);
-		contentPane.add(table);
+		//contentPane.add(table);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(403, 11, 26, 215);
 		contentPane.add(scrollPane);
 		
-		//scrollPane.setViewportView(table);
+		scrollPane.setViewportView(table);
 		
 		
 		
 		
 	}
 
-	public StoreView(Cliente cliente) {
-		// TODO Auto-generated constructor stub
-	}
 }
