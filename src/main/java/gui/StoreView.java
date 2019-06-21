@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.sample.Cliente;
+
 public class StoreView extends JFrame {
 
 	private JPanel contentPane;
@@ -73,10 +75,14 @@ public class StoreView extends JFrame {
 		scrollPane.setBounds(403, 11, 26, 215);
 		contentPane.add(scrollPane);
 		
-		scrollPane.setViewportView(table);
+		//scrollPane.setViewportView(table);
 		
 		
 		
 		
+	}
+
+	public StoreView(Cliente cliente) {
+		// TODO Auto-generated constructor stub
 	}
 }

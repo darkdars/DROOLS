@@ -10,6 +10,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JTextArea;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -74,12 +77,29 @@ public class LoginView extends JFrame {
 		
 		JButton btnNewButton_1 = new JButton("Login");
 		panel.add(btnNewButton_1);
+		btnNewButton_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			}
+
+        });
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel.add(horizontalStrut);
 		
 		JButton btnNewButton = new JButton("Register");
 		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				RegisterView registerView = new RegisterView();
+				registerView.setVisible(true);
+			}
+
+        });
 		
 		Component horizontalGlue_1 = Box.createHorizontalGlue();
 		panel.add(horizontalGlue_1);

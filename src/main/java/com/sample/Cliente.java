@@ -8,7 +8,13 @@ public class Cliente {
 	private boolean single;
 	private boolean children;
 	
-	
+	public Cliente(String name, boolean male, boolean single, boolean children) {
+		this.name = name;
+		this.male = male;
+		this.single = single;
+		this.children = children;
+		this.lastitem = " ";
+	}
 	
 	public Cliente(String id, String name, boolean male, boolean single, boolean children) {
 		this.id = id;
@@ -17,7 +23,6 @@ public class Cliente {
 		this.single = single;
 		this.children = children;
 		this.lastitem = " ";
-		
 	}
 	
 	public String getId() {

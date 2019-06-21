@@ -6,6 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.sample.Cliente;
+
 import java.awt.Color;
 import java.awt.FlowLayout;
 import javax.swing.JButton;
@@ -129,12 +132,71 @@ public class RegisterView extends JFrame {
 		
 		JButton btnRegister = new JButton("Register");
 		panel_1.add(btnRegister);
+		btnRegister.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				boolean register = true;
+				String name = textField.getText();
+				boolean gender = false;
+				boolean married = false;
+				boolean children = false;
+				if(name == null || name.contentEquals(" ")) {
+					register = false;
+				}
+				if(rdbtnMale.isSelected()) {
+					gender = true;
+				}else if(rdbtnFemale.isSelected()) {
+					gender = false;
+				}else {
+					register = false;
+				}
+				
+				if(radioButton.isSelected()) {
+					married = true;
+					
+				}else if(rdbtnNo.isSelected()) {
+					married = true;
+					
+				}else {
+					register = false;
+				}
+				
+				if(radioButton_1.isSelected()) {
+					children = true;
+					
+				}else if(rdbtnNo_1.isSelected()) {
+					children = true;
+					
+				}else {
+					register = false;
+				}
+				if(register) {
+					Cliente cliente = new Cliente(name, gender, married, children);
+					dispose();
+					StoreView storeView = new StoreView(cliente);
+					storeView.setVisible(true);
+				}
+				
+			}
+
+        });
 		
 		Component horizontalStrut = Box.createHorizontalStrut(20);
 		panel_1.add(horizontalStrut);
 		
 		JButton btnCancel = new JButton("Cancel");
 		panel_1.add(btnCancel);
+		btnCancel.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				LoginView loginView = new LoginView();
+				loginView.setVisible(true);
+			}
+
+        });
 	}
 
 }
