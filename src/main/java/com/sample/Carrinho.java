@@ -37,9 +37,25 @@ public class Carrinho {
 		this.compras.add(item);
 	}
 	
-	public void removeCompra(Items item) {
-		this.valor -= item.getValor();
-		this.compras.remove(item);
+	public void removeCompra(String id) {
+		Items tempItem;
+		for(Items item : this.compras) {
+			if(item.getId().equalsIgnoreCase(id)) {
+				this.valor -= item.getValor();
+				this.compras.remove(item);
+				break;
+			}
+		}
+	}
+
+	public Object getItemNumber(String id) {
+		int count = 0;
+		for(Items item : this.compras) {
+			if(item.getNome().equalsIgnoreCase("id")) {
+				count++;
+			}
+		}
+		return count;
 	}
 	
 	

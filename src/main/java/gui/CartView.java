@@ -5,13 +5,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.sample.Cliente;
+import com.sample.Items;
+import com.sample.Loja;
+
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
@@ -29,7 +38,7 @@ public class CartView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CartView frame = new CartView();
+					CartView frame = new CartView(null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +50,7 @@ public class CartView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public CartView() {
+	public CartView(Loja loja, Cliente cliente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -66,20 +75,54 @@ public class CartView extends JFrame {
 		JButton btnBuy = new JButton("Buy");
 		panel.add(btnBuy);
 		
-		JLabel lblTotal = new JLabel("Pre\u00E7o Total:");
+		JLabel lblTotal = new JLabel("Pre\u00E7o Total: " + loja.getCart(cliente).getValor() + "€");
 		panel.add(lblTotal);
 		
+
 		table = new JTable();
-		table.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Card Shop", TitledBorder.LEADING, TitledBorder.ABOVE_TOP, null, new Color(0, 0, 0)));
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
-				{null, null, null, null},
 			},
 			new String[] {
 				"ID", "Nome", "Quantidade", "Valor"
+			}) {
+
+			    @Override
+			    public boolean isCellEditable(int row, int column) {
+			       //all cells false
+			       return false;
+			    }
+			});
+
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		for(Items item : loja.getCart(cliente).getCompras()) {
+			model.addRow(new Object[]{item.getId(), item.getNome(), loja.getCart(cliente).getItemNumber(item.getId()), item.getValor()});				
+		}
+		table.setModel(model);
+		table.setBounds(5, 11, 394, 215);
+		//contentPane.add(table);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		contentPane.add(scrollPane);
+		
+		scrollPane.setViewportView(table);
+		
+		btnRemove.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				if(row == -1) {
+					return;
+				}
+				loja.getCart(cliente).removeCompra((String)model.getValueAt(row, 0));
+				model.removeRow(row);
+				lblTotal.setText("Pre\u00E7o Total: " + loja.getCart(cliente).getValor() + "€");
 			}
-		));
-		contentPane.add(table, BorderLayout.CENTER);
+
+        });
+		
+		
 	}
 
 }

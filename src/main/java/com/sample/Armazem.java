@@ -10,7 +10,7 @@ public class Armazem extends Items{
 		// TODO Auto-generated constructor stub
 		super();
 		this.listItems = listItems;
-		this.numberItems = new HashMap<String,Integer>();
+		updateNumbers();
 	}
 
 	public List<Items> getListItems() {
@@ -52,4 +52,11 @@ public class Armazem extends Items{
 		this.numberItems = numberItems;
 	}
 	
+	public void updateNumbers() {
+		this.numberItems = new HashMap<String,Integer>();
+		for(Items item : this.listItems) {
+			Integer number =  new Integer(this.numberItems.get(item.id) == null ? 0 : this.numberItems.get(item.id));
+			this.numberItems.put(item.id, ++number);
+		}
+	}
 }
