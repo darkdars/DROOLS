@@ -32,7 +32,7 @@ rule "Check Item sex"
 	then
 end
 
-rule "Check Children" //extends "Check Item sex"
+rule "Check Children" extends "Check Item sex"
 	//salience 100 
 	when
 		$c: Cliente(children == true)
