@@ -52,6 +52,10 @@ public class Cliente {
 		}
 		return false;
 	}
+	
+	public String checkMaleString() {
+		return male == true ? "homem" : "mulher";
+	}
 	public boolean single() {
 		return this.single;
 	}

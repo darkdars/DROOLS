@@ -20,27 +20,29 @@ rule "GoodBye"
         System.out.println( myMessage );
 end
 */
+global String childrenStr
+global Items itemTest
 /***********Children*****************/
 rule "Check Item sex"
-	salience 100 
+	//salience 100 
 	when
-		c: Cliente()
-		b: Items($tipo : tipo)
-		eval(c.checkMale($tipo))
+		$a: Cliente()
+		$b: Items($var : tipo)
+		eval($a.checkMale($var))
 	then
-		$tipo = $tipo.equals("homem") == true ? "crianca_h" : "crianca_m";
 end
 
-rule "Check Children" extends "Check Item sex"
-	salience 100 
+rule "Check Children" //extends "Check Item sex"
+	//salience 100 
 	when
-		$f: Armazem($lista : listItems)
-		$i: Items(tipo == $tipo) from $lista
 		$c: Cliente(children == true)
+		$f: Armazem($lista : listItems)
+		$i: Items(tipo == ($c.checkMaleString().equals("homem") == true ? "crianca_h" : "crianca_m")) from $lista
 	then
 end
 
 rule "Check Children M" extends "Check Children"
+	salience 100
 	when
 		eval($c.male())
 	then
@@ -50,11 +52,12 @@ rule "Check Children M" extends "Check Children"
 end
 
 rule "Check Children F" extends "Check Children"
+	salience 100
 	when
 		eval(!$c.male())
 	then
 		$c.deleteLastitem();
-		System.out.println( $i.getTipo() );
+		System.out.println( $i.getTipo() + "end");
 		retract($c);
 
 end
