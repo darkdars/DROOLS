@@ -21,13 +21,22 @@ rule "GoodBye"
 end
 */
 /***********Children*****************/
-rule "Check Children"
+rule "Check Item sex"
+	salience 100 
+	when
+		c: Cliente()
+		b: Items($tipo : tipo)
+		eval(c.checkMale($tipo))
+	then
+		$tipo = $tipo.equals("homem") == true ? "crianca_h" : "crianca_m";
+end
+
+rule "Check Children" extends "Check Item sex"
 	salience 100 
 	when
 		$f: Armazem($lista : listItems)
-		$i: Items(tipo == "crianca") from $lista
+		$i: Items(tipo == $tipo) from $lista
 		$c: Cliente(children == true)
-		eval($c.checkLastitem())
 	then
 end
 
@@ -45,7 +54,7 @@ rule "Check Children F" extends "Check Children"
 		eval(!$c.male())
 	then
 		$c.deleteLastitem();
-		System.out.println( "Oferece Tshirt: Mãe és a segunda!" );
+		System.out.println( $i.getTipo() );
 		retract($c);
 
 end

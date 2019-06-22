@@ -43,6 +43,15 @@ public class Cliente {
 	public void setMale(boolean male) {
 		this.male = male;
 	}
+	public boolean checkMale(String tipo) {
+		if(tipo == null) {
+			return false;
+		}
+		if((tipo.equals("homem") && male) || (tipo.equals("mulher") && !male)) {
+			return true;
+		}
+		return false;
+	}
 	public boolean single() {
 		return this.single;
 	}

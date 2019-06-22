@@ -12,6 +12,7 @@ public class DroolTest {
 	
 	Cliente cliente;
 	Items item;
+	Armazem armazem;
 	
 	public DroolTest(){
 		try {
@@ -24,7 +25,7 @@ public class DroolTest {
 		}
 	}
 	
-	public DroolTest(Cliente cliente, Items item){
+	public DroolTest(Cliente cliente, Items item, Armazem armazem){
 		try {
 			// load up the knowledge base
 			ks = KieServices.Factory.get();
@@ -35,16 +36,19 @@ public class DroolTest {
 		}
 		this.cliente = cliente;
 		this.item = item;
+		this.armazem = armazem;
 	}
 	
-	public void addTest(Cliente cliente, Items item) {
+	public void addTest(Cliente cliente, Items item, Armazem armazem) {
 		this.cliente = cliente;
 		this.item = item;
+		this.armazem = armazem;
 	}
 	
 	public void runTest() {
 		kSession.insert(this.cliente);
 		kSession.insert(this.item);
+		kSession.insert(this.armazem);
 		
 		kSession.fireAllRules();
 	}

@@ -27,15 +27,15 @@ public class DroolsTest {
 
 			// Inserir na lista de items
 
-			Items item1 = new Items("001", "Chapeu",10, "Tommy", "homem", null);
-			//Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", "homem", item1);
-			Items item3 = new Items("003", "Camisola",0, "Sou o Papa!", "crianca", null);
+			Items item1 = new Items("001", "Chapeu Vermelho",10, "Chapeu", "homem", "003");
+			Items item2 = new Items("002", "Oculos de Sol",10, "Oculos", "homem", "001");
+			Items item3 = new Items("003", "Camisol: O Pai È o melhor!",30, "Camisola", "crianca_h", "002");
 			
 			
 			
 			
 			listItems.add(item1);
-			//listItems.add(item2);
+			listItems.add(item2);
 			listItems.add(item3);
 
 			// Armaz√©m criado
@@ -52,6 +52,7 @@ public class DroolsTest {
 			
 			
 			kSession.insert(armazem);
+			kSession.insert(item2);
 			kSession.insert(cliente1);
 			kSession.insert(cliente2);
 			kSession.insert(cliente3);
