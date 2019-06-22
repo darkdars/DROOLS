@@ -10,11 +10,20 @@ public class Armazem extends Items{
 		// TODO Auto-generated constructor stub
 		super();
 		this.listItems = listItems;
-		updateNumbers();
+		numberItems = new HashMap<>();
+		for(Items item : listItems) {
+			this.numberItems.put(item.getId(), new Integer(20));
+		}
 	}
 
 	public List<Items> getListItems() {
-		return listItems;
+		List<Items> tempItems = new ArrayList();
+		for(Items i : this.listItems) {
+			if(this.numberItems.get(i.id) > 0) {
+				tempItems.add(i);
+			}
+		}
+		return tempItems;
 	}
 
 	public void setListItems(List<Items> listItems) {
@@ -23,10 +32,9 @@ public class Armazem extends Items{
 	
 	public Items getItem(String id) {
 		for(Items i : this.listItems) {
-			if(i.getId() == id) {
+			if(i.getId() == id && this.numberItems.get(i.id) != 0) {
 				Integer number =  new Integer(this.numberItems.get(i.id) == null ? 0 : this.numberItems.get(i.id));
 				this.numberItems.put(i.id, --number);
-				this.listItems.remove(i);
 				return i;
 			}
 		}
@@ -36,8 +44,7 @@ public class Armazem extends Items{
 	
 	public void setItem(Items item) {		
 		Integer number =  new Integer(this.numberItems.get(item.id) == null ? 0 : this.numberItems.get(item.id));
-		this.numberItems.put(item.id, ++number);
-		this.listItems.add(item);
+		this.numberItems.put(item.getId(), ++number);
 	}
 
 	public int getNumeroItems(String id) {
@@ -50,13 +57,5 @@ public class Armazem extends Items{
 
 	public void setNumberItems(HashMap<String, Integer> numberItems) {
 		this.numberItems = numberItems;
-	}
-	
-	public void updateNumbers() {
-		this.numberItems = new HashMap<String,Integer>();
-		for(Items item : this.listItems) {
-			Integer number =  new Integer(this.numberItems.get(item.id) == null ? 0 : this.numberItems.get(item.id));
-			this.numberItems.put(item.id, ++number);
-		}
 	}
 }

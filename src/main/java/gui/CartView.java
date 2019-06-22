@@ -22,6 +22,7 @@ import com.sample.Items;
 import com.sample.Loja;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.TitledBorder;
 import javax.swing.UIManager;
 import java.awt.Color;
@@ -31,21 +32,6 @@ public class CartView extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					CartView frame = new CartView(null, null);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -66,6 +52,22 @@ public class CartView extends JFrame {
 		Component horizontalGlue = Box.createHorizontalGlue();
 		panel.add(horizontalGlue);
 		
+		JButton btnNewButton = new JButton("Go Back");
+		panel.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				StoreView storeView = new StoreView(loja, cliente);
+				storeView.setVisible(true);
+			}
+
+        });
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_1);
+		
 		JButton btnRemove = new JButton("Remove");
 		panel.add(btnRemove);
 		
@@ -74,6 +76,9 @@ public class CartView extends JFrame {
 		
 		JButton btnBuy = new JButton("Buy");
 		panel.add(btnBuy);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_2);
 		
 		JLabel lblTotal = new JLabel("Pre\u00E7o Total: " + loja.getCart(cliente).getValor() + "€");
 		panel.add(lblTotal);
@@ -96,7 +101,7 @@ public class CartView extends JFrame {
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		for(Items item : loja.getCart(cliente).getCompras()) {
-			model.addRow(new Object[]{item.getId(), item.getNome(), loja.getCart(cliente).getItemNumber(item.getId()), item.getValor()});				
+			model.addRow(new Object[]{item.getId(), item.getNome(), loja.getNumberOfItemsInCart(cliente, item.getId()), item.getValor()});				
 		}
 		table.setModel(model);
 		table.setBounds(5, 11, 394, 215);
@@ -115,9 +120,34 @@ public class CartView extends JFrame {
 				if(row == -1) {
 					return;
 				}
-				loja.getCart(cliente).removeCompra((String)model.getValueAt(row, 0));
-				model.removeRow(row);
+				loja.removeItemFromCart(cliente, (String)model.getValueAt(row, 0));
+				int numberItem = loja.getNumberOfItemsInCart(cliente, (String)model.getValueAt(row, 0));
+				if(numberItem == 0) {
+					model.removeRow(row);					
+				}else {
+					table.setValueAt(numberItem, row, 2);
+				}
 				lblTotal.setText("Pre\u00E7o Total: " + loja.getCart(cliente).getValor() + "€");
+			}
+
+        });
+		
+		btnBuy.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(loja.getCart(cliente).getNumberOfItems() == 0) {
+					JOptionPane.showMessageDialog(null, "Go check our items.");
+					dispose();
+					StoreView storeView = new StoreView(loja, cliente);
+					storeView.setVisible(true);	
+				}else {
+					JOptionPane.showMessageDialog(null, "Obrigado pela compra, o valor total dos "+ loja.getCart(cliente).getNumberOfItems() +" é " + loja.getCart(cliente).getValor() + "€.");
+					dispose();
+					loja.resetCliente(cliente);
+					StoreView storeView = new StoreView(loja, cliente);
+					storeView.setVisible(true);						
+				}
 			}
 
         });

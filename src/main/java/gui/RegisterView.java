@@ -225,7 +225,7 @@ public class RegisterView extends JFrame {
 				if(register) {
 					Cliente cliente = new Cliente(name, gender, married, children);
 					dispose();
-					StoreView storeView = new StoreView(cliente);
+					StoreView storeView = new StoreView(null, cliente);
 					storeView.setVisible(true);
 				}
 				

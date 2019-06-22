@@ -7,18 +7,11 @@ public class Loja{
 	HashMap<Cliente,Carrinho> lista;
 	
 	public Loja() {
+		ReadCsvFile readCsvFile = new ReadCsvFile();
 		List<Items> listItems = new ArrayList<Items>();
 
-		// Inserir na lista de items
 
-		Items item1 = new Items("001", "Chapeu",10, "Tommy", "homem", null);
-		Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", "homem", item1);
-		Items item3 = new Items("003", "Camisola",0, "Sou o Papa!", "crianca", null);
-		
-		listItems.add(item1);
-		listItems.add(item2);
-		listItems.add(item3);
-
+		listItems = readCsvFile.readItemsFile("csv-file/StoreItems.csv");
 		// Armazém criado
 		this.armazem = new Armazem(listItems);
 
@@ -49,12 +42,62 @@ public class Loja{
 		this.lista = lista;
 	}
 	
-	public void addCart(Cliente cliente, Carrinho carrinho) {
+	public void addItemToCart(Cliente cliente, Items item) {
+		Carrinho carrinho = lista.get(cliente);
+		if(carrinho == null) {
+			return;
+		}
+		carrinho.addCompra(item);
+		lista.put(cliente, carrinho);
+	}
+	
+	public void removeItemFromCart(Cliente cliente, Items item) {
+		Carrinho carrinho = lista.get(cliente);
+		if(carrinho == null) {
+			return;
+		}
+		carrinho.removeCompra(item.getId());
+		lista.put(cliente, carrinho);
+	}
+	
+	public void removeItemFromCart(Cliente cliente, String id) {
+		Carrinho carrinho = lista.get(cliente);
+		if(carrinho == null) {
+			return;
+		}
+		Items item = carrinho.removeCompra(id);
+		if(item == null) {
+			return;
+		}
+		armazem.setItem(item);
 		lista.put(cliente, carrinho);
 	}
 	
 	public Carrinho getCart(Cliente cliente) {
 		return lista.get(cliente);
+	}
+
+	public void addCliente(Cliente cliente) {
+		for (Cliente key : lista.keySet()) {
+		    if(key == cliente) {
+		    	return;
+		    }
+		}
+		lista.put(cliente, new Carrinho());
+	}
+	
+	public void resetCliente(Cliente cliente) {
+		for (Cliente key : lista.keySet()) {
+		    if(key == cliente) {
+				lista.put(cliente, new Carrinho());
+		    	return;
+		    }
+		}
+	}
+
+	public int getNumberOfItemsInCart(Cliente cliente, String id) {
+		// TODO Auto-generated method stub
+		return this.lista.get(cliente).getItemNumber(id);
 	}
 	
 	

@@ -28,14 +28,14 @@ public class DroolsTest {
 			// Inserir na lista de items
 
 			Items item1 = new Items("001", "Chapeu",10, "Tommy", "homem", null);
-			Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", "homem", item1);
+			//Items item2 = new Items("002", "Oculos de Sol",10, "Ray Ban", "homem", item1);
 			Items item3 = new Items("003", "Camisola",0, "Sou o Papa!", "crianca", null);
 			
 			
 			
 			
 			listItems.add(item1);
-			listItems.add(item2);
+			//listItems.add(item2);
 			listItems.add(item3);
 
 			// Armazém criado

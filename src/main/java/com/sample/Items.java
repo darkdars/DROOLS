@@ -8,14 +8,14 @@ public class Items {
 	String descricao;
 	String tipo;
 	String img;
-	Items complementar;
+	String complementar;
 	float valor;
 	
 	public Items() {
 		
 	}
 	
-	public Items(String id, String nome,float valor, String descricao, String tipo, Items complementar) {
+	public Items(String id, String nome,float valor, String descricao, String tipo, String complementar) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -24,7 +24,7 @@ public class Items {
 		this.valor = valor;
 	}
 	
-	public Items(String id, String nome,float valor, String descricao, String tipo, Items complementar, String img) {
+	public Items(String id, String nome,float valor, String descricao, String tipo, String complementar, String img) {
 		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
@@ -46,10 +46,10 @@ public class Items {
 	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
-	public Items getComplementar() {
+	public String getComplementar() {
 		return complementar;
 	}
-	public void setComplementar(Items complementar) {
+	public void setComplementar(String complementar) {
 		this.complementar = complementar;
 	}
 

@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 import com.sample.Carrinho;
 import com.sample.Cliente;
+import com.sample.DroolTest;
 import com.sample.Items;
 import com.sample.Loja;
 
@@ -36,7 +37,7 @@ public class StoreView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StoreView frame = new StoreView(null);
+					StoreView frame = new StoreView(null, new Cliente("001", "Diana", false, true, true));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,10 +49,10 @@ public class StoreView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public StoreView(Cliente cliente) {
+	public StoreView(Loja store, Cliente cliente) {
 		
-		Loja loja = new Loja();
-		Carrinho carrinho = new Carrinho();
+		this.loja = (store == null) ? new Loja() : store;
+		loja.addCliente(cliente);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -109,8 +110,6 @@ public class StoreView extends JFrame {
 		
 		scrollPane.setViewportView(table);
 		
-		
-		
 		btnAdd.addActionListener(new ActionListener() {
 
 			@Override
@@ -122,8 +121,10 @@ public class StoreView extends JFrame {
 				Items item = loja.getArmazem().getItem((String)model.getValueAt(row, 0));
 				
 				if(item != null) {
-					carrinho.addCompra(item);
-					loja.addCart(cliente, carrinho);
+					loja.addItemToCart(cliente, item);
+					DroolTest droolTest = new DroolTest(cliente, item);
+					droolTest.runTest();
+	                model.setValueAt(loja.getArmazem().getNumeroItems(item.getId()), row, 3);
 				}
 			}
 
