@@ -106,7 +106,7 @@ rule "Check Single" extends"Check Item sex"
 		for(int n = DFT.getRowCount()-1; n >= 0; n--){
 			DFT.removeRow(n);
 		}
-		for(Items item : $f.getComplamentaryList($b.getComplementar())) {
+		for(Items item : $f.getComplamentaryList($b.getComplementar() )) {
 			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
 		}
 		retract($c);
