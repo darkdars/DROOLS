@@ -1,11 +1,21 @@
 package com.sample;
 
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.rule.QueryResults;
+import org.kie.api.runtime.rule.QueryResultsRow;
+
 
 public class DroolTest {
 
@@ -18,6 +28,8 @@ public class DroolTest {
 	Armazem armazem;
 	Loja loja;
 	JTable table;
+	
+	List<Items> itemList = new ArrayList();
 	
 	public DroolTest(){
 		try {
@@ -60,6 +72,32 @@ public class DroolTest {
 		kSession.insert(this.loja.getArmazem());
 		
 		kSession.fireAllRules();
+		gravaTestes();
+	}
+	
+	private void gravaTestes(){
+		
+		BufferedWriter output = null;
+		StringBuilder stringBuilder = new StringBuilder();
+        try {
+            output = new BufferedWriter(new FileWriter("results/Testes Do Utilizador " + this.cliente.getName() + ".txt", true));
+            stringBuilder.append("**Teste - " + loja.getArmazem().getLastRule() + " Rule *******\n");
+            for(Items i : loja.getArmazem().getLastList())
+            	stringBuilder.append("Id: " + i.getId() + ", Nome: " + i.getNome() + ", Tipo: " + i.getTipo() + ", Descricao: " + i.getDescricao() + ", Item Complementar: " + i.getComplementar() + ".\n");
+            output.append(stringBuilder.toString());
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        } finally {
+          if ( output != null ) {
+            try {
+				output.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+          }
+        }
+		
+		
 	}
 	
 

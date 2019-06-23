@@ -4,6 +4,7 @@
 	<classpathentry kind="src" path="src/main/resources"/>
 	<classpathentry kind="src" path="images"/>
 	<classpathentry kind="src" path="csv-file"/>
+	<classpathentry kind="src" path="results"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="DROOLS/Drools"/>
 	<classpathentry kind="output" path="target/classes"/>

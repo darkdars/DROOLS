@@ -67,9 +67,10 @@ rule "Check Children" extends "Check Item sex"
 			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
 		}
 		TB.setModel(DFT);
-		
 		update($c);
 		retract($c);
+		update($f);
+		retract($f);
 end
 
 /***********Married*****************/
@@ -88,6 +89,8 @@ rule "Check Married" extends "Check Item sex"
 		}
 		TB.setModel(DFT);
 		retract($c);
+		update($f);
+		retract($f);
 end
 
 
@@ -107,6 +110,8 @@ rule "Check Single" extends"Check Item sex"
 			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
 		}
 		retract($c);
+		update($f);
+		retract($f);
 end
 
 /**********Update Armazem**********/
@@ -118,4 +123,8 @@ rule "Check Armazem"
 	then
 		$a.setMaxNumberItems($i.getId());
 		update($a)
+end
+
+query "Teste Results" ()
+	$f: Armazem($lista : lastList)
 end

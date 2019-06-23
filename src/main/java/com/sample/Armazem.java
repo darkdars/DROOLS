@@ -7,11 +7,14 @@ public class Armazem extends Items{
 	private HashMap<String, Integer> numberItems;
 	private static final Integer minimumStock = 5;
 	private static final Integer maxStock = 20;
+	private String lastRule;
+	private List<Items> lastList;
 
 	public Armazem(List<Items> listItems) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.listItems = listItems;
+		this.lastList = new ArrayList();
 		numberItems = new HashMap<>();
 		for(Items item : listItems) {
 			this.numberItems.put(item.getId(), new Integer(maxStock));
@@ -82,9 +85,11 @@ public class Armazem extends Items{
 	public List<Items> getChildList(String tipo){
 		List<Items> sendList = new ArrayList();
 		List<Items> tempList = new ArrayList();
+		lastRule = "Check Children";
 		for(Items item : this.listItems) {
 			if(item.getTipo().equalsIgnoreCase(tipo)) {
 				sendList.add(item);
+				lastList.add(item);
 			}else {
 				tempList.add(item);				
 			}
@@ -96,9 +101,11 @@ public class Armazem extends Items{
 	public List<Items> getDescriptionList(String tipo, String descricao){
 		List<Items> sendList = new ArrayList();
 		List<Items> tempList = new ArrayList();
+		lastRule = "Check Married";
 		for(Items item : this.listItems) {
 			if(item.getTipo().equalsIgnoreCase(tipo) && item.getDescricao().equalsIgnoreCase(descricao)) {
 				sendList.add(item);
+				lastList.add(item);
 			}else {
 				tempList.add(item);				
 			}
@@ -110,9 +117,11 @@ public class Armazem extends Items{
 	public List<Items> getComplamentaryList(String complementar){
 		List<Items> sendList = new ArrayList();
 		List<Items> tempList = new ArrayList();
+		lastRule = "Check Single";
 		for(Items item : this.listItems) {
 			if(item.getComplementar().equalsIgnoreCase(complementar)) {
 				sendList.add(item);
+				lastList.add(item);
 			}else {
 				tempList.add(item);				
 			}
@@ -121,5 +130,16 @@ public class Armazem extends Items{
 		return sendList;
 	}
 	
+	public List<Items> getLastList(){
+		List<Items> send = lastList;
+		lastList = new ArrayList();
+		return send;
+	}
+	
+	public String getLastRule(){
+		String send = lastRule;
+		lastRule = "";
+		return send;
+	}
 	
 }
