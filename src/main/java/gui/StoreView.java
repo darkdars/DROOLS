@@ -13,6 +13,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import com.sample.Carrinho;
@@ -57,7 +59,7 @@ public class StoreView extends JFrame {
 		this.loja = (store == null) ? new Loja() : store;
 		loja.addCliente(cliente);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1024, 860);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -136,6 +138,15 @@ public class StoreView extends JFrame {
 		table.setModel(model);
 		table.setBounds(5, 11, 394, 215);
 		//contentPane.add(table);
+		
+		DefaultTableCellRenderer rendar = new DefaultTableCellRenderer();
+	    rendar.setHorizontalAlignment(SwingConstants.CENTER);
+
+	    
+	    table.getColumnModel().getColumn(0).setCellRenderer(rendar); 
+	    table.getColumnModel().getColumn(1).setCellRenderer(rendar); 
+	    table.getColumnModel().getColumn(2).setCellRenderer(rendar); 
+	    table.getColumnModel().getColumn(3).setCellRenderer(rendar); 
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);

@@ -243,8 +243,6 @@ public class RegisterView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				LoginView loginView = new LoginView();
-				loginView.setVisible(true);
 			}
 
         });

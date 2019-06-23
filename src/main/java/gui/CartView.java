@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 import com.sample.Cliente;
@@ -38,7 +40,7 @@ public class CartView extends JFrame {
 	 */
 	public CartView(Loja loja, Cliente cliente) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1024, 860);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -103,9 +105,19 @@ public class CartView extends JFrame {
 		for(Items item : loja.getCart(cliente).getCompras()) {
 			model.addRow(new Object[]{item.getId(), item.getNome(), loja.getNumberOfItemsInCart(cliente, item.getId()), item.getValor()});				
 		}
+				 
 		table.setModel(model);
 		table.setBounds(5, 11, 394, 215);
 		//contentPane.add(table);
+		DefaultTableCellRenderer rendar = new DefaultTableCellRenderer();
+	    rendar.setHorizontalAlignment(SwingConstants.CENTER);
+
+	    
+	    table.getColumnModel().getColumn(0).setCellRenderer(rendar); 
+	    table.getColumnModel().getColumn(1).setCellRenderer(rendar); 
+	    table.getColumnModel().getColumn(2).setCellRenderer(rendar); 
+	    table.getColumnModel().getColumn(3).setCellRenderer(rendar); 
+		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		contentPane.add(scrollPane);
