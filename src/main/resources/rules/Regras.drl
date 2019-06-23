@@ -64,7 +64,7 @@ rule "Check Children" extends "Check Item sex"
 			DFT.removeRow(n);
 		}
 		for(Items item : $f.getChildList($c.checkMaleString().equals("homem") ? "crianca_h" : "crianca_m")) {
-			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
+			DFT.addRow(new Object[]{item.getId(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
 		}
 		TB.setModel(DFT);
 		update($c);
@@ -85,7 +85,7 @@ rule "Check Married" extends "Check Item sex"
 			DFT.removeRow(n);
 		}
 		for(Items item : $f.getDescriptionList(($c.checkMaleString().equals("homem") ? "mulher" : "homem"), $b.getDescricao())) {
-			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
+			DFT.addRow(new Object[]{item.getId(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
 		}
 		TB.setModel(DFT);
 		retract($c);
@@ -107,7 +107,7 @@ rule "Check Single" extends"Check Item sex"
 			DFT.removeRow(n);
 		}
 		for(Items item : $f.getComplamentaryList($b.getComplementar() )) {
-			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
+			DFT.addRow(new Object[]{item.getId(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
 		}
 		retract($c);
 		update($f);

@@ -20,6 +20,9 @@ import com.sample.Cliente;
 import com.sample.DroolTest;
 import com.sample.Items;
 import com.sample.Loja;
+import javax.swing.JLabel;
+import java.awt.Component;
+import javax.swing.Box;
 
 public class StoreView extends JFrame {
 
@@ -65,11 +68,38 @@ public class StoreView extends JFrame {
 		contentPane.add(panel, BorderLayout.SOUTH);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		Component horizontalStrut_6 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_6);
+		
+		Component horizontalStrut_5 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_5);
+		
+		Component horizontalStrut_3 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_3);
+		
+		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_1);
+		
 		JButton btnAdd = new JButton("Add");
 		panel.add(btnAdd);
 		
 		JButton btnCart = new JButton("Cart");
 		panel.add(btnCart);
+		
+		Component horizontalStrut = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut);
+		
+		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_2);
+		
+		Component horizontalStrut_4 = Box.createHorizontalStrut(20);
+		panel.add(horizontalStrut_4);
+		
+		//lblNewLabel
+		JLabel labelTotal = new JLabel("Pre\u00E7o Total: " + loja.getCart(cliente).getValor() + "€");
+		panel.add(labelTotal);
+		
+		
 		btnCart.addActionListener(new ActionListener() {
 
 			@Override
@@ -81,13 +111,15 @@ public class StoreView extends JFrame {
 
         });
 		
+	
+		
 		
 		table = new JTable();
 		table.setModel(new DefaultTableModel(
 			new Object[][] {
 			},
 			new String[] {
-				"ID", "Imagem", "Nome", "Quantidade", "Valor"
+				"ID", "Nome", "Quantidade", "Valor"
 			}) {
 
 			    @Override
@@ -99,7 +131,7 @@ public class StoreView extends JFrame {
 
 		DefaultTableModel model = (DefaultTableModel) table.getModel();
 		for(Items item : loja.getArmazem().getListItems()) {
-			model.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), loja.getArmazem().getNumeroItems(item.getId()), item.getValor()});				
+			model.addRow(new Object[]{item.getId(), item.getNome(), loja.getArmazem().getNumeroItems(item.getId()), item.getValor()});				
 		}
 		table.setModel(model);
 		table.setBounds(5, 11, 394, 215);
@@ -123,9 +155,11 @@ public class StoreView extends JFrame {
 				if(item != null) {
 					DroolTest droolTest = new DroolTest(cliente, item, loja, table);
 					droolTest.runTest();
+					labelTotal.setText("Pre\u00E7o Total: " + loja.getCart(cliente).getValor() + "€");
 				}
 			}
-
+			
+			
         });
 	}
 
