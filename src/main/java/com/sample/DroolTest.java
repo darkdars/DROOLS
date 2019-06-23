@@ -72,19 +72,31 @@ public class DroolTest {
 		kSession.insert(this.loja.getArmazem());
 		
 		kSession.fireAllRules();
-		gravaTestes();
+		gravaTestes(getFileString());
 	}
 	
-	private void gravaTestes(){
+	private String getFileString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("**Teste - " + loja.getArmazem().getLastRule() + " Rule *******\n");
+		if(loja.getArmazem().getLastRule().equalsIgnoreCase("Didn't Trigger Any")) {
+	        stringBuilder.append("The item  " + this.item.getId() + " didn't trigger a rule.\n\n");
+			return stringBuilder.toString();
+		}else {
+	        stringBuilder.append("Rule was triggered by the item with Id " + this.item.getId() + ".\n");
+	        stringBuilder.append("Rule resultes: \n");
+	        for(Items i : loja.getArmazem().getLastList())
+	        	stringBuilder.append("Id: " + i.getId() + ", Nome: " + i.getNome() + ", Tipo: " + i.getTipo() + ", Descricao: " + i.getDescricao() + ", Item Complementar: " + i.getComplementar() + ".\n");
+	        stringBuilder.append("\n");
+			return stringBuilder.toString();
+		}
+	}
+	
+	private void gravaTestes(String content){
 		
 		BufferedWriter output = null;
-		StringBuilder stringBuilder = new StringBuilder();
         try {
             output = new BufferedWriter(new FileWriter("results/Testes Do Utilizador " + this.cliente.getName() + ".txt", true));
-            stringBuilder.append("**Teste - " + loja.getArmazem().getLastRule() + " Rule *******\n");
-            for(Items i : loja.getArmazem().getLastList())
-            	stringBuilder.append("Id: " + i.getId() + ", Nome: " + i.getNome() + ", Tipo: " + i.getTipo() + ", Descricao: " + i.getDescricao() + ", Item Complementar: " + i.getComplementar() + ".\n");
-            output.append(stringBuilder.toString());
+            output.append(content);
         } catch ( IOException e ) {
             e.printStackTrace();
         } finally {

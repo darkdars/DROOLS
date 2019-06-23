@@ -1,7 +1,16 @@
 **Teste - Check Children Rule *******
+Rule was triggered by the item with Id 006.
+Rule resultes: 
 Id: 005, Nome: Camisola: A minha mãe é a melhor!, Tipo: crianca_m, Descricao: Camisola, Item Complementar: 004.
 Id: 010, Nome: T-Shirt: A mae é uma masterchef, Tipo: crianca_m, Descricao: T-Shirt, Item Complementar: 009.
 Id: 011, Nome: Sapatos Tommy, Tipo: crianca_m, Descricao: Sapatos, Item Complementar: 009.
 Id: 012, Nome: Sapatos Channel, Tipo: crianca_m, Descricao: Sapatos, Item Complementar: 009.
+
+**Teste - Didn't Trigger Any Rule *******
+The item  001 didn't trigger a rule.
+
 **Teste - Check Married Rule *******
+Rule was triggered by the item with Id 006.
+Rule resultes: 
 Id: 002, Nome: Oculos de Sol, Tipo: homem, Descricao: Oculos, Item Complementar: 001.
+

@@ -7,7 +7,7 @@ public class Armazem extends Items{
 	private HashMap<String, Integer> numberItems;
 	private static final Integer minimumStock = 5;
 	private static final Integer maxStock = 20;
-	private String lastRule;
+	private String lastRule = "Didn't Trigger Any";
 	private List<Items> lastList;
 
 	public Armazem(List<Items> listItems) {
@@ -133,13 +133,15 @@ public class Armazem extends Items{
 	public List<Items> getLastList(){
 		List<Items> send = lastList;
 		lastList = new ArrayList();
+		resetLastRule();
 		return send;
 	}
 	
+	public void resetLastRule(){
+		lastRule = "Didn't Trigger Any";
+	}
 	public String getLastRule(){
 		String send = lastRule;
-		lastRule = "";
 		return send;
 	}
-	
 }
