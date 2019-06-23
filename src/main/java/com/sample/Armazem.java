@@ -3,16 +3,18 @@ package com.sample;
 import java.util.*;
 
 public class Armazem extends Items{
-	List<Items> listItems;
-	HashMap<String, Integer> numberItems; 
-	
+	private List<Items> listItems;
+	private HashMap<String, Integer> numberItems;
+	private static final Integer minimumStock = 5;
+	private static final Integer maxStock = 20;
+
 	public Armazem(List<Items> listItems) {
 		// TODO Auto-generated constructor stub
 		super();
 		this.listItems = listItems;
 		numberItems = new HashMap<>();
 		for(Items item : listItems) {
-			this.numberItems.put(item.getId(), new Integer(20));
+			this.numberItems.put(item.getId(), new Integer(maxStock));
 		}
 	}
 
@@ -58,4 +60,66 @@ public class Armazem extends Items{
 	public void setNumberItems(HashMap<String, Integer> numberItems) {
 		this.numberItems = numberItems;
 	}
+	
+	public void setMaxNumberItems(String id) {
+		this.numberItems.put(id, maxStock);
+	}
+	public Object[] getNumberItemsKey() {
+		return this.numberItems.keySet().toArray();
+	}
+	public Object[] getNumberItemsValue() {
+		return this.numberItems.values().toArray();
+	}
+
+	public static Integer getMinimumstock() {
+		return minimumStock;
+	}
+
+	public static Integer getMaxstock() {
+		return maxStock;
+	}
+	
+	public List<Items> getChildList(String tipo){
+		List<Items> sendList = new ArrayList();
+		List<Items> tempList = new ArrayList();
+		for(Items item : this.listItems) {
+			if(item.getTipo().equalsIgnoreCase(tipo)) {
+				sendList.add(item);
+			}else {
+				tempList.add(item);				
+			}
+		}
+		sendList.addAll(tempList);
+		return sendList;
+	}
+	
+	public List<Items> getDescriptionList(String tipo, String descricao){
+		List<Items> sendList = new ArrayList();
+		List<Items> tempList = new ArrayList();
+		for(Items item : this.listItems) {
+			if(item.getTipo().equalsIgnoreCase(tipo) && item.getDescricao().equalsIgnoreCase(descricao)) {
+				sendList.add(item);
+			}else {
+				tempList.add(item);				
+			}
+		}
+		sendList.addAll(tempList);
+		return sendList;
+	}
+	
+	public List<Items> getComplamentaryList(String complementar){
+		List<Items> sendList = new ArrayList();
+		List<Items> tempList = new ArrayList();
+		for(Items item : this.listItems) {
+			if(item.getComplementar().equalsIgnoreCase(complementar)) {
+				sendList.add(item);
+			}else {
+				tempList.add(item);				
+			}
+		}
+		sendList.addAll(tempList);
+		return sendList;
+	}
+	
+	
 }

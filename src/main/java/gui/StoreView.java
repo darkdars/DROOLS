@@ -37,7 +37,7 @@ public class StoreView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StoreView frame = new StoreView(null, new Cliente("001", "Diana", false, true, true));
+					StoreView frame = new StoreView(null, new Cliente("001", "Diana", false, false, false));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -121,10 +121,8 @@ public class StoreView extends JFrame {
 				Items item = loja.getArmazem().getItem((String)model.getValueAt(row, 0));
 				
 				if(item != null) {
-					loja.addItemToCart(cliente, item);
-					DroolTest droolTest = new DroolTest(cliente, item, loja.getArmazem());
+					DroolTest droolTest = new DroolTest(cliente, item, loja, table);
 					droolTest.runTest();
-	                model.setValueAt(loja.getArmazem().getNumeroItems(item.getId()), row, 3);
 				}
 			}
 

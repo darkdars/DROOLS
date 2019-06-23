@@ -204,7 +204,7 @@ public class RegisterView extends JFrame {
 				}
 				
 				if(radioButton.isSelected()) {
-					married = true;
+					married = false;
 					
 				}else if(rdbtnNo.isSelected()) {
 					married = true;
@@ -217,7 +217,7 @@ public class RegisterView extends JFrame {
 					children = true;
 					
 				}else if(rdbtnNo_1.isSelected()) {
-					children = true;
+					children = false;
 					
 				}else {
 					register = false;

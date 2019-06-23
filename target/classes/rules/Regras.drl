@@ -20,9 +20,26 @@ rule "GoodBye"
         System.out.println( myMessage );
 end
 */
-global String childrenStr
-global Items itemTest
-/***********Children*****************/
+
+global javax.swing.JTable TB
+global javax.swing.table.DefaultTableModel DFT
+
+
+/***********Update Price*****************/
+rule "Update Price"
+	no-loop true
+	salience 100 
+	when
+		$a: Armazem()
+		$c: Cliente()
+		$l: Loja()
+		$i: Items($money : valor, $id : id)
+		eval($a.getNumeroItems($id) > 0)
+	then
+		$l.addItemToCart($c, $i);
+		update($l);
+end
+/***********Check Sex*****************/
 rule "Check Item sex"
 	//salience 100 
 	when
@@ -32,48 +49,73 @@ rule "Check Item sex"
 	then
 end
 
+/***********Children*****************/
 rule "Check Children" extends "Check Item sex"
-	
-	salience 100 
+	no-loop true
+	salience 90 
 	when
 		$c: Cliente(children == true)
 		$f: Armazem($lista : listItems)
-		$i: Items(tipo == ($c.checkMaleString().equals("homem") == true ? "crianca_h" : "crianca_m")) from $lista
+		$i: Items(tipo == ($c.checkMaleString().equals("homem") ? "crianca_h" : "crianca_m")) from $lista
 		eval($c.checkLastitem())
 	then
 		$c.deleteLastitem();
-		System.out.println($i.getNome() + " " + $i.getTipo());
+		for(int n = DFT.getRowCount()-1; n >= 0; n--){
+			DFT.removeRow(n);
+		}
+		for(Items item : $f.getChildList($c.checkMaleString().equals("homem") ? "crianca_h" : "crianca_m")) {
+			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
+		}
+		TB.setModel(DFT);
+		
 		update($c);
 		retract($c);
 end
 
 /***********Married*****************/
-rule "Check Married"
-	salience 90
+rule "Check Married" extends "Check Item sex"
+	salience 80
 	when
-		$b: Items()
 		$c: Cliente(single == false)
 		$f: Armazem($lista : listItems)
-		$i: Items(tipo == ($c.checkMaleString().equals("homem") == true ? "mulher" : "homem"), descricao == $b.getDescricao()) from $lista
-	
+		$i: Items(tipo == ($c.checkMaleString().equals("homem") ? "mulher" : "homem"), descricao == $b.getDescricao()) from $lista
 	then
-		$c.deleteLastitem();
-		System.out.println($i.getNome() + " " + $i.getTipo());
+		for(int n = DFT.getRowCount()-1; n >= 0; n--){
+			DFT.removeRow(n);
+		}
+		for(Items item : $f.getDescriptionList(($c.checkMaleString().equals("homem") ? "mulher" : "homem"), $b.getDescricao())) {
+			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
+		}
+		TB.setModel(DFT);
 		retract($c);
 end
 
 
 /***********Single*****************/
-rule "Check Single" 
-	salience 80
+rule "Check Single" extends"Check Item sex"
+	salience 70
 	when
-		$b: Items()
 		$c: Cliente(single == true, str : lastitem)
 		$f: Armazem($lista : listItems)
 		$i: Items(complementar == $b.getComplementar()) from $lista
 		
 	then
-		$c.deleteLastitem();
-		System.out.println( $i.getId() );
+		for(int n = DFT.getRowCount()-1; n >= 0; n--){
+			DFT.removeRow(n);
+		}
+		for(Items item : $f.getComplamentaryList($b.getComplementar())) {
+			DFT.addRow(new Object[]{item.getId(), item.getImg(), item.getNome(), $f.getNumeroItems(item.getId()), item.getValor()});				
+		}
 		retract($c);
+end
+
+/**********Update Armazem**********/
+rule "Check Armazem"
+	salience 99
+	when
+		$a: Armazem($lista : listItems)
+		$i: Items($a.getNumeroItems(id) < $a.getMinimumstock()) from $lista
+	then
+		$a.setMaxNumberItems($i.getId());
+		update($a)
 end
