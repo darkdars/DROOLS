@@ -1,0 +1,14 @@
+**USER **************
+Name       : Andre
+Sex        : Homem
+Civil State: Solteiro
+Children   : Não tem filhos
+
+**Teste - Check Single Rule *******
+Rule was triggered by the item with Id 007.
+Rule resultes: 
+Id: 011, Nome: Sapatos Tommy, Tipo: homem, Descricao: Sapatos, Item Complementar: 010.
+
+**Teste - Didn't Trigger Any Rule *******
+The item  006 didn't trigger a rule.
+

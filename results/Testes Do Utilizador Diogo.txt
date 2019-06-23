@@ -1,0 +1,20 @@
+**USER **************
+Name       : Diogo
+Sex        : Homem
+Civil State: Solteiro
+Children   : Tem Filhos
+
+**Teste - Check Children Rule *******
+Rule was triggered by the item with Id 011.
+Rule resultes: 
+Id: 003, Nome: Camisol: O Pai é o melhor!, Tipo: crianca_h, Descricao: Camisola, Item Complementar: 002.
+Id: 009, Nome: T-Shirt: Pai cozinha mal, Tipo: crianca_h, Descricao: T-Shirt, Item Complementar: 008 .
+
+**Teste - Check Single Rule *******
+Rule was triggered by the item with Id 011.
+Rule resultes: 
+Id: 010, Nome: T-Shirt: A mae é uma masterchef, Tipo: crianca_m, Descricao: T-Shirt, Item Complementar: 009.
+
+**Teste - Didn't Trigger Any Rule *******
+The item  012 didn't trigger a rule.
+

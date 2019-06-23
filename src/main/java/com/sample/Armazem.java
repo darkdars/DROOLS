@@ -119,7 +119,7 @@ public class Armazem extends Items{
 		List<Items> tempList = new ArrayList();
 		lastRule = "Check Single";
 		for(Items item : this.listItems) {
-			if(item.getComplementar().equalsIgnoreCase(complementar)) {
+			if(item.getId().equalsIgnoreCase(complementar)) {
 				sendList.add(item);
 				lastList.add(item);
 			}else {

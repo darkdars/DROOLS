@@ -1,6 +1,7 @@
 package com.sample;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -66,13 +67,28 @@ public class DroolTest {
 	}
 	
 	public void runTest() {
+		File file = new File("results/Testes Do Utilizador " + this.cliente.getName() + ".txt");
 		kSession.insert(this.cliente);
 		kSession.insert(this.item);
 		kSession.insert(this.loja);
 		kSession.insert(this.loja.getArmazem());
 		
 		kSession.fireAllRules();
+		if(!file.exists()) {
+			gravaTestes(getUserFileString());
+		}
 		gravaTestes(getFileString());
+	}
+	
+	private String getUserFileString() {
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append("**USER **************\n");
+		stringBuilder.append("Name       : " + this.cliente.getName() + "\n");
+		stringBuilder.append("Sex        : " + (this.cliente.male() ? "Homem" : "Mulher") + "\n");
+		stringBuilder.append("Civil State: " + (this.cliente.single() ? "Solteiro" : "Casado") + "\n");
+		stringBuilder.append("Children   : " + (this.cliente.isChildren() ? "Tem Filhos" : "Não tem filhos") + "\n");
+		stringBuilder.append("\n");
+		return stringBuilder.toString();
 	}
 	
 	private String getFileString() {

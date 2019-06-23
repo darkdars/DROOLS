@@ -1,22 +1,20 @@
 **USER **************
-Name       : Diana
+Name       : Chagas
 Sex        : Mulher
-Civil State: Solteiro
+Civil State: Casado
 Children   : Tem Filhos
 
 **Teste - Check Children Rule *******
-Rule was triggered by the item with Id 004.
+Rule was triggered by the item with Id 006.
 Rule resultes: 
 Id: 005, Nome: Camisola: A minha mãe é a melhor!, Tipo: crianca_m, Descricao: Camisola, Item Complementar: 004.
 Id: 010, Nome: T-Shirt: A mae é uma masterchef, Tipo: crianca_m, Descricao: T-Shirt, Item Complementar: 009.
 
-**Teste - Check Single Rule *******
-Rule was triggered by the item with Id 004.
-Rule resultes: 
-Id: 006, Nome: Oculos de Sol, Tipo: mulher, Descricao: Oculos, Item Complementar: 007.
-
-**Teste - Check Single Rule *******
+**Teste - Check Married Rule *******
 Rule was triggered by the item with Id 006.
 Rule resultes: 
-Id: 007, Nome: T-Shirt: One-Punch, Tipo: homem, Descricao: T-Shirt, Item Complementar: 011.
+Id: 002, Nome: Oculos de Sol, Tipo: homem, Descricao: Oculos, Item Complementar: 001.
+
+**Teste - Didn't Trigger Any Rule *******
+The item  005 didn't trigger a rule.
 

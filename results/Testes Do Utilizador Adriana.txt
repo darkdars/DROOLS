@@ -1,0 +1,19 @@
+**USER **************
+Name       : Adriana
+Sex        : Mulher
+Civil State: Solteiro
+Children   : Não tem filhos
+
+**Teste - Check Single Rule *******
+Rule was triggered by the item with Id 012.
+Rule resultes: 
+Id: 013, Nome: Chapeu Vermelho, Tipo: mulher, Descricao: Chapeu, Item Complementar: 012.
+
+**Teste - Check Single Rule *******
+Rule was triggered by the item with Id 006.
+Rule resultes: 
+Id: 007, Nome: T-Shirt: One-Punch, Tipo: homem, Descricao: T-Shirt, Item Complementar: 011.
+
+**Teste - Didn't Trigger Any Rule *******
+The item  007 didn't trigger a rule.
+

@@ -1,0 +1,19 @@
+**USER **************
+Name       : Francisco
+Sex        : Homem
+Civil State: Casado
+Children   : Não tem filhos
+
+**Teste - Check Married Rule *******
+Rule was triggered by the item with Id 011.
+Rule resultes: 
+Id: 012, Nome: Sapatos Channel, Tipo: mulher, Descricao: Sapatos, Item Complementar: 013.
+
+**Teste - Check Married Rule *******
+Rule was triggered by the item with Id 001.
+Rule resultes: 
+Id: 013, Nome: Chapeu Vermelho, Tipo: mulher, Descricao: Chapeu, Item Complementar: 012.
+
+**Teste - Didn't Trigger Any Rule *******
+The item  006 didn't trigger a rule.
+
