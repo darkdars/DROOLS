@@ -33,91 +33,47 @@ rule "Check Item sex"
 end
 
 rule "Check Children" extends "Check Item sex"
-	//salience 100 
+	
+	salience 100 
 	when
 		$c: Cliente(children == true)
 		$f: Armazem($lista : listItems)
 		$i: Items(tipo == ($c.checkMaleString().equals("homem") == true ? "crianca_h" : "crianca_m")) from $lista
-	then
-end
-
-rule "Check Children M" extends "Check Children"
-	salience 100
-	when
-		eval($c.male())
+		eval($c.checkLastitem())
 	then
 		$c.deleteLastitem();
-		System.out.println( "Oferece Tshirt: Pai és o melhor!" );
+		System.out.println($i.getNome() + " " + $i.getTipo());
+		update($c);
 		retract($c);
-end
-
-rule "Check Children F" extends "Check Children"
-	salience 100
-	when
-		eval(!$c.male())
-	then
-		$c.deleteLastitem();
-		System.out.println( $i.getTipo() + "end");
-		retract($c);
-
 end
 
 /***********Married*****************/
 rule "Check Married"
 	salience 90
 	when
-		$f: Armazem($lista : listItems)
+		$b: Items()
 		$c: Cliente(single == false)
-		eval($c.checkLastitem())
-	then
-end
-
-rule "Check Married M" extends "Check Married"
-	when
-		eval($c.male())
-		$i: Items(tipo == "mulher") from $lista
+		$f: Armazem($lista : listItems)
+		$i: Items(tipo == ($c.checkMaleString().equals("homem") == true ? "mulher" : "homem"), descricao == $b.getDescricao()) from $lista
+	
 	then
 		$c.deleteLastitem();
-		System.out.println( "%s Oferece Tshirt: !");
+		System.out.println($i.getNome() + " " + $i.getTipo());
 		retract($c);
 end
 
-rule "Check Married F" extends "Check Married"
-	when
-		eval(!$c.male())
-		$i: Items(tipo == "homem") from $lista
-	then
-		$c.deleteLastitem();
-		System.out.println( "Oferece Tshirt: !" );
-		retract($c);
-
-end
 
 /***********Single*****************/
-rule "Check Single"
+rule "Check Single" 
 	salience 80
 	when
-		$f: Armazem($lista : listItems)
-		$i: Items(tipo == "homem") from $lista
+		$b: Items()
 		$c: Cliente(single == true, str : lastitem)
-		eval($c.checkLastitem())
-	then
-end
-
-rule "Check Single M" extends "Check Single"
-	when
-		eval($c.male())
+		$f: Armazem($lista : listItems)
+		$i: Items(complementar == $b.getComplementar()) from $lista
+		
 	then
 		$c.deleteLastitem();
-		System.out.println( "Oferece Tshirt: M" );
-		retract($c);
-end
-
-rule "Check Single F" extends "Check Single"
-	when
-		eval(!$c.male())
-	then
-		$c.deleteLastitem();
-		System.out.println( "Oferece Tshirt: F" );
+		System.out.println( $i.getId() );
 		retract($c);
 end

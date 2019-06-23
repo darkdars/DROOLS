@@ -37,7 +37,7 @@ public class StoreView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StoreView frame = new StoreView(null, new Cliente("001", "Diana", false, false, true));
+					StoreView frame = new StoreView(null, new Cliente("001", "Diana", false, true, true));
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

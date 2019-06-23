@@ -13,7 +13,7 @@ public class Cliente {
 		this.male = male;
 		this.single = single;
 		this.children = children;
-		this.lastitem = " ";
+		this.lastitem = "first";
 	}
 	
 	public Cliente(String id, String name, boolean male, boolean single, boolean children) {
@@ -22,7 +22,7 @@ public class Cliente {
 		this.male = male;
 		this.single = single;
 		this.children = children;
-		this.lastitem = " ";
+		this.lastitem = "first";
 	}
 	
 	public String getId() {
