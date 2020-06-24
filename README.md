@@ -1,3 +1,7 @@
 # DROOLS
 
-Trabalho de Drools Realizado no Ano 2018/2019, por Hugo Silva e Carlos André!
+System that recomends new purchases based on previous ones. Writed in Java using the techonologie Drools.
+
+# Contributions
+# Hugo Silva
+# Carlos Santana
